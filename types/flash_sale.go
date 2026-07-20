@@ -1,0 +1,49 @@
+package types
+
+type FlashSaleImportReq struct {
+}
+
+type FlashSaleReq struct {
+	FlashSaleId uint   `json:"flash_sale_id" form:"flash_sale_id"`
+	ProductId   uint   `json:"product_id" form:"product_id"`
+	BossId      uint   `json:"boss_id" form:"boss_id"`
+	AddressId   uint   `json:"address_id" form:"address_id"`
+	Key         string `json:"key" form:"key"`
+}
+
+type ListFlashSaleReq struct {
+	PageSize int64 `json:"page_size" form:"page_size"`
+	PageNum  int64 `json:"page_num" form:"page_num"`
+}
+
+type GetFlashSaleReq struct {
+	ProductId uint `json:"product_id" form:"product_id"`
+}
+
+type FlashSaleResp struct {
+	ProductId      uint   `json:"product_id"`
+	UserId         uint   `json:"user_id"`
+	RemainingStock int64  `json:"remaining_stock"`
+	Status         string `json:"status"`
+}
+
+type AdminFlashSaleReq struct {
+	ProductId  uint    `json:"product_id" binding:"required"`
+	BossId     uint    `json:"boss_id" binding:"required"`
+	Title      string  `json:"title" binding:"required"`
+	Money      float64 `json:"money" binding:"required"`
+	Num        int     `json:"num" binding:"required"`
+	CustomId   uint    `json:"custom_id"`
+	CustomName string  `json:"custom_name"`
+}
+
+type AdminFlashSaleUpdateReq struct {
+	ID         uint    `json:"id" binding:"required"`
+	ProductId  uint    `json:"product_id" binding:"required"`
+	BossId     uint    `json:"boss_id" binding:"required"`
+	Title      string  `json:"title" binding:"required"`
+	Money      float64 `json:"money" binding:"required"`
+	Num        int     `json:"num" binding:"required"`
+	CustomId   uint    `json:"custom_id"`
+	CustomName string  `json:"custom_name"`
+}
