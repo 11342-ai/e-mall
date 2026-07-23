@@ -25,6 +25,7 @@ import (
 
 var (
 	writer       *segmentio.Writer
+	dlqWriter    *segmentio.Writer
 	consumerOnce sync.Once
 )
 
@@ -38,6 +39,14 @@ func InitKafka() {
 		writer = &segmentio.Writer{
 			Addr:     segmentio.TCP(strings.Split(config.Address, ",")...),
 			Topic:    consts.FlashSaleQueues,
+			Balancer: &segmentio.LeastBytes{},
+		}
+	}
+
+	if dlqWriter == nil {
+		dlqWriter = &segmentio.Writer{
+			Addr:     segmentio.TCP(strings.Split(config.Address, ",")...),
+			Topic:    consts.FlashSaleDLQ,
 			Balancer: &segmentio.LeastBytes{},
 		}
 	}
@@ -111,7 +120,9 @@ func consumeFlashSaleOrders(config *conf.KafkaConfig) {
 			if log.LogrusObj != nil {
 				log.LogrusObj.Error(err)
 			}
-			return
+			// FetchMessage 失败时重连等待，不永久退出
+			time.Sleep(3 * time.Second)
+			continue
 		}
 
 		var payload model.FlashSale2MQ
@@ -119,17 +130,22 @@ func consumeFlashSaleOrders(config *conf.KafkaConfig) {
 			if log.LogrusObj != nil {
 				log.LogrusObj.Error(err)
 			}
+			// 反序列化失败属于永久性错误，commit 跳过
+			_ = reader.CommitMessages(context.Background(), msg)
 			continue
 		}
 
 		consumeCtx, consumeSpan := buildConsumeContext(msg)
-		if err = handleFlashSaleOrder(consumeCtx, &payload); err != nil {
+		if err = handleWithRetry(consumeCtx, &payload); err != nil {
 			ext.Error.Set(consumeSpan, true)
 			consumeSpan.SetTag("error.message", err.Error())
 			consumeSpan.Finish()
 			if log.LogrusObj != nil {
 				log.LogrusObj.Error(err)
 			}
+			// 重试耗尽 → 投递 DLQ → commit offset 解除分区阻塞
+			publishToDLQ(msg, err)
+			_ = reader.CommitMessages(context.Background(), msg)
 			continue
 		}
 
@@ -141,9 +157,6 @@ func consumeFlashSaleOrders(config *conf.KafkaConfig) {
 			}
 		}
 		consumeSpan.Finish()
-		if err != nil && log.LogrusObj != nil {
-			log.LogrusObj.Error(err)
-		}
 	}
 }
 
@@ -179,6 +192,53 @@ func handleFlashSaleOrder(ctx context.Context, payload *model.FlashSale2MQ) erro
 
 		return dao.NewOrderDaoByDB(tx).CreateOrder(order)
 	})
+}
+
+// handleWithRetry 带指数退避重试的处理
+func handleWithRetry(ctx context.Context, payload *model.FlashSale2MQ) error {
+	backoff := 1 * time.Second
+	maxRetries := 3
+	var lastErr error
+	for i := 0; i <= maxRetries; i++ {
+		if err := handleFlashSaleOrder(ctx, payload); err == nil {
+			return nil
+		} else {
+			lastErr = err
+		}
+
+		if i < maxRetries {
+			log.LogrusObj.Warnf("flash-sale retry %d/%d after %v: %v", i+1, maxRetries, backoff, lastErr)
+			time.Sleep(backoff)
+			backoff *= 2
+		}
+	}
+	return lastErr
+}
+
+// publishToDLQ 将处理失败的消息投递到死信主题
+func publishToDLQ(msg segmentio.Message, processErr error) {
+	if dlqWriter == nil {
+		log.LogrusObj.Error("dlq writer unavailable")
+		return
+	}
+
+	headers := make([]segmentio.Header, 0, len(msg.Headers)+1)
+	headers = append(headers, msg.Headers...)
+	headers = append(headers, segmentio.Header{
+		Key:   "x-error-reason",
+		Value: []byte(processErr.Error()),
+	})
+
+	writeCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := dlqWriter.WriteMessages(writeCtx, segmentio.Message{
+		Key:     msg.Key,
+		Value:   msg.Value,
+		Headers: headers,
+	}); err != nil {
+		log.LogrusObj.Errorf("publish to DLQ failed: %v", err)
+	}
 }
 
 func buildConsumeContext(msg segmentio.Message) (context.Context, opentracing.Span) {
