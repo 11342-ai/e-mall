@@ -68,6 +68,8 @@ func NewRouter() *gin.Engine {
 			// 卖家中心：查看自己的商品、上架/下架
 			authed.GET("boss/product/list", api.BossProductListHandler())
 			authed.POST("boss/product/on_sale", api.BossProductOnSaleHandler())
+			// 交易流水（商家）
+			authed.GET("boss/payment/transactions/list", api.ListPaymentTransactionByPayeeID())
 
 			// 商品评价（需登录）
 			authed.POST("reviews/create", api.CreateReviewHandler())
@@ -105,6 +107,8 @@ func NewRouter() *gin.Engine {
 
 			// 支付功能
 			authed.POST("paydown", api.OrderPaymentHandler())
+			// 交易流水（买家）
+			authed.GET("payment/transactions/list", api.ListPaymentTransactionByUserID())
 
 			// 显示金额
 			authed.POST("money", api.ShowMoneyHandler())
@@ -178,6 +182,9 @@ func NewRouter() *gin.Engine {
 			admin.POST("flash-sale/create", api.AdminCreateFlashSaleHandler())
 			admin.POST("flash-sale/update", api.AdminUpdateFlashSaleHandler())
 			admin.POST("flash-sale/delete", api.AdminDeleteFlashSaleHandler())
+
+			// 交易流水（管理员）
+			admin.GET("payment/transactions/list", api.AdminPaymentTransactionList())
 
 			// 充值退款
 			admin.POST("recharge/wechat/refund", api.WechatRefundHandler())

@@ -38,6 +38,9 @@ func loading() {
 	track.InitTrack()
 	idgen.Init()
 
+	ctx := context.Background()
+	go rabbitmq.StartConsumers(ctx)
+
 	log.InitLogger()
 	fmt.Println("加载配置完成...")
 	go startScript()

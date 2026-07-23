@@ -169,8 +169,7 @@ func (s *PaymentSrv) PayDown(ctx context.Context, req *types.PaymentDownReq) (re
 			return err
 		}
 
-		return nil
-
+		return nil // PaymentTransaction 由 rabbitmq-order-paid-queue 消费者异步写入
 	})
 
 	if err != nil {

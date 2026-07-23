@@ -4,83 +4,35 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="999584a6-42a7-41a2-91f5-673702164fa2" name="更改" comment="init">
+    <list default="true" id="999584a6-42a7-41a2-91f5-673702164fa2" name="更改" comment="添加雪花算法">
+      <change afterPath="$PROJECT_DIR$/api/v1/payment_transaction.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/db/dao/payment_transaction.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/db/model/payment_transaction.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/rabbitmq/consumer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/payment_transaction.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/payment_transaction.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/address.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/address.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/carousel.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/carousel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/cart.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/common.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/coupon.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/favorite.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/favorite.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/flash_sale.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/flash_sale.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/money.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/money.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/payment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/payment_gateway.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/payment_gateway.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/review.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/review.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/track.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/track.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/cache/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/cache/common.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/address.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/address.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/carousel.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/carousel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/cart.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/coupon.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/favorite.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/favorite.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/flash_sale.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/flash_sale.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/migrate.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/migrate.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/product_img.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/product_img.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/recharge.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/recharge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/review.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/review.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/dao/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/model/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/model/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/model/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/model/product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/db/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/db/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/es/es.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/es/es.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/es/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/es/product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/kafka/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/kafka/common.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/rabbitmq/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/rabbitmq/common.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/address.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/address.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/carousel.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/carousel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/cart.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/coupon.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/favorite.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/favorite.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/flash_sale.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/flash_sale.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/money.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/money.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/order.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/payment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/payment_gateway.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/payment_gateway.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product_index.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/product_index.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/review.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/review.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/ctl/ctl.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/ctl/ctl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/email/email.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/email/email.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/jwt/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/jwt/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/log/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/log/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/upload/local.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/upload/local.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/upload/oss.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/upload/oss.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="repository" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/Program_language/Go/Go_Work/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.2.linux-amd64" />
   <component name="Git.Settings">
@@ -99,7 +51,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -110,33 +62,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.GoLinterPluginOnboardingV2&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.analysis.ui.options.defaults&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/cxr/Program&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/home/cxr/Program_language/NVM/nvm/versions/node/v22.23.1/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;/home/cxr/Program_language/NVM/nvm/versions/node/v22.23.1/bin/npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.runtime&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/cxr/SoftWare_01/GoLand-2026.1.4/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Go 构建.go build cmd/.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.GoLinterPluginOnboardingV2": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.analysis.ui.options.defaults": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "javascript.preferred.runtime.type.id": "node",
+    "last_opened_file_path": "/home/cxr/Program/e-mall/service",
+    "nodejs_interpreter_path": "/home/cxr/Program_language/NVM/nvm/versions/node/v22.23.1/bin/node",
+    "nodejs_package_manager_path": "/home/cxr/Program_language/NVM/nvm/versions/node/v22.23.1/bin/npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "settings.javascript.runtime",
+    "ts.external.directory.path": "/home/cxr/SoftWare_01/GoLand-2026.1.4/plugins/javascript-plugin/jsLanguageServicesImpl/external"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go 构建.go build payment_transaction.go">
     <configuration name="go build cmd/" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="e-mall" />
       <working_directory value="$PROJECT_DIR$" />
@@ -146,6 +105,20 @@
       <auto_managed_config_id value="$PROJECT_DIR$/cmd" />
       <method v="2" />
     </configuration>
+    <configuration name="go build payment_transaction.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="e-mall" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="e-mall" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/repository/db/dao/payment_transaction.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go 构建.go build payment_transaction.go" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -205,7 +178,8 @@
     <MESSAGE value="我自己搞的" />
     <MESSAGE value="完整版本" />
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="添加雪花算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加雪花算法" />
   </component>
   <component name="VgoModernizerVersionTracker">
     <upgrades>
