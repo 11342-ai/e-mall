@@ -10,7 +10,6 @@ import (
 	"gorm.io/gorm"
 
 	"e-mall/consts"
-	"e-mall/repository/cache"
 	"e-mall/repository/db/dao"
 	"e-mall/repository/db/model"
 	"e-mall/repository/rabbitmq"
@@ -175,11 +174,6 @@ func (s *PaymentSrv) PayDown(ctx context.Context, req *types.PaymentDownReq) (re
 	if err != nil {
 		log.LogrusObj.Error(err)
 		return
-	}
-	if paidEvent != nil {
-		if zremErr := cache.RedisClient.ZRem(ctx, OrderTimeKey, fmt.Sprintf("%d", paidEvent.OrderNum)).Err(); zremErr != nil {
-			log.LogrusObj.Error(zremErr)
-		}
 	}
 	if paidEvent != nil {
 		if publishErr := rabbitmq.PublishJSON(ctx, consts.OrderPaidQueue, paidEvent); publishErr != nil {

@@ -13,6 +13,11 @@ const OrderPaidQueue = "rabbitmq-order-paid-queue"
 
 const RechargePaidQueue = "rabbitmq-recharge-paid-queue"
 
+// 订单超时延迟队列（基于 rabbitmq_delayed_message_exchange 插件）
+const OrderTimeoutExchange = "order-delayed-exchange"
+const OrderTimeoutRoutingKey = "order.timeout"
+const OrderTimeoutQueue = "rabbitmq-order-timeout-queue"
+
 const (
 	OrderRefundStatusNone = iota
 	OrderRefundStatusRequested

@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="999584a6-42a7-41a2-91f5-673702164fa2" name="更改" comment="添加雪花算法">
-      <change afterPath="$PROJECT_DIR$/api/v1/payment_transaction.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository/db/dao/payment_transaction.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository/db/model/payment_transaction.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository/rabbitmq/consumer.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/payment_transaction.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/payment_transaction.go" afterDir="false" />
+    <list default="true" id="999584a6-42a7-41a2-91f5-673702164fa2" name="更改" comment="添加一个支付流水表，解决以往那个rabbitmq没有消费者的问题">
+      <change afterPath="$PROJECT_DIR$/.Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consts/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/consts/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/rabbitmq/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/rabbitmq/common.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/rabbitmq/consumer.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/rabbitmq/consumer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/order.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/payment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/types/order.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +179,8 @@
     <MESSAGE value="完整版本" />
     <MESSAGE value="init" />
     <MESSAGE value="添加雪花算法" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加雪花算法" />
+    <MESSAGE value="添加一个支付流水表，解决以往那个rabbitmq没有消费者的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加一个支付流水表，解决以往那个rabbitmq没有消费者的问题" />
   </component>
   <component name="VgoModernizerVersionTracker">
     <upgrades>

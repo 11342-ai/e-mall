@@ -4,26 +4,21 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"strconv"
 	"sync"
 	"time"
 
-	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 
 	conf "e-mall/config"
 	"e-mall/consts"
-	"e-mall/repository/cache"
 	"e-mall/repository/db/dao"
 	"e-mall/repository/db/model"
+	"e-mall/repository/rabbitmq"
 	"e-mall/types"
 	"e-mall/utils/ctl"
 	"e-mall/utils/idgen"
 	util "e-mall/utils/log"
 )
-
-const OrderTimeKey = "OrderTime"
-const orderTimeoutScanInterval = 5 * time.Second
 
 var OrderSrvIns *OrderSrv
 var OrderSrvOnce sync.Once
@@ -97,12 +92,16 @@ func (s *OrderSrv) OrderCreate(ctx context.Context, req *types.OrderCreateReq) (
 		return nil, err
 	}
 
-	// 订单号存入Redis中，设置过期时间
-	data := redis.Z{
-		Score:  float64(time.Now().Unix()) + 15*time.Minute.Seconds(),
-		Member: orderNum,
+	// 发送延迟消息，15 分钟后由 RabbitMQ 投递给超时消费者处理
+	event := &types.OrderTimeoutEvent{
+		OrderNum:  orderNum,
+		CreatedAt: time.Now(),
 	}
-	cache.RedisClient.ZAdd(cache.RedisContext, OrderTimeKey, data)
+	if pubErr := rabbitmq.PublishDelayedJSON(ctx, consts.OrderTimeoutExchange, consts.OrderTimeoutRoutingKey,
+		15*time.Minute, event); pubErr != nil {
+		util.LogrusObj.Error(pubErr)
+		// 延迟消息发送失败不影响订单创建，仅记录日志
+	}
 
 	resp = &types.OrderCreateResp{
 		ID:       order.ID,
@@ -112,55 +111,6 @@ func (s *OrderSrv) OrderCreate(ctx context.Context, req *types.OrderCreateReq) (
 	}
 
 	return
-}
-
-func StartOrderTimeoutWorker(ctx context.Context) {
-	ticker := time.NewTicker(orderTimeoutScanInterval)
-	defer ticker.Stop()
-
-	for {
-		select {
-		case <-ctx.Done():
-			return
-		case <-ticker.C:
-			consumeExpiredOrders(ctx)
-		}
-	}
-}
-
-func consumeExpiredOrders(ctx context.Context) {
-	orderNums, err := cache.RedisClient.ZRangeByScore(ctx, OrderTimeKey, &redis.ZRangeBy{
-		Min:   "-inf",
-		Max:   strconv.FormatInt(time.Now().Unix(), 10),
-		Count: 50,
-	}).Result()
-	if err != nil {
-		util.LogrusObj.Error(err)
-		return
-	}
-
-	if len(orderNums) == 0 {
-		return
-	}
-
-	orderDao := dao.NewOrderDao(ctx)
-	for _, orderNumStr := range orderNums {
-		orderNum, parseErr := strconv.ParseUint(orderNumStr, 10, 64)
-		if parseErr != nil {
-			util.LogrusObj.Error(parseErr)
-			_ = cache.RedisClient.ZRem(ctx, OrderTimeKey, orderNumStr).Err()
-			continue
-		}
-
-		if err = orderDao.DeleteUnpaidOrderByOrderNum(orderNum); err != nil {
-			util.LogrusObj.Error(err)
-			continue
-		}
-
-		if err = cache.RedisClient.ZRem(ctx, OrderTimeKey, orderNumStr).Err(); err != nil {
-			util.LogrusObj.Error(err)
-		}
-	}
 }
 
 func (s *OrderSrv) OrderList(ctx context.Context, req *types.OrderListReq) (resp interface{}, err error) {

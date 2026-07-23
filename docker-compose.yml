@@ -74,8 +74,10 @@ services:
       - mall
 
   rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
+    build:
+      context: .
+      dockerfile: .DockerFile
+    container_name: RabbitMQ
     ports:
       - "5672:5672" # AMQP 端口
       - "15672:15672" # 管理界面端口

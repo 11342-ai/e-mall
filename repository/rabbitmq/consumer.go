@@ -47,6 +47,7 @@ func StartConsumers(ctx context.Context) {
 	consumerChOnce.Do(func() {
 		go runOrderPaidConsumer(ctx)
 		go runRechargePaidConsumer(ctx)
+		go runOrderTimeoutConsumer(ctx)
 	})
 }
 
@@ -200,6 +201,71 @@ func runRechargePaidConsumer(ctx context.Context) {
 			}
 			processRechargePaidMessage(ctx, delivery)
 		}
+	}
+}
+
+// runOrderTimeoutConsumer 监听订单超时延迟队列
+func runOrderTimeoutConsumer(ctx context.Context) {
+	queue := consts.OrderTimeoutQueue
+
+	ch, err := getConsumerChannel()
+	if err != nil {
+		log.LogrusObj.Errorf("order-timeout consumer: %v", err)
+		return
+	}
+	defer ch.Close()
+
+	// 队列由上游 PublishDelayedJSON 声明，消费侧也声明一次保证幂等
+	_, err = ch.QueueDeclare(queue, true, false, false, false, nil)
+	if err != nil {
+		log.LogrusObj.Errorf("order-timeout consumer declare queue: %v", err)
+		return
+	}
+
+	deliveries, err := ch.Consume(queue, "", false, false, false, false, nil)
+	if err != nil {
+		log.LogrusObj.Errorf("order-timeout consumer register: %v", err)
+		return
+	}
+
+	log.LogrusObj.Infof("order-timeout consumer started, waiting for messages...")
+
+	for {
+		select {
+		case <-ctx.Done():
+			log.LogrusObj.Info("order-timeout consumer stopped")
+			return
+		case delivery, ok := <-deliveries:
+			if !ok {
+				log.LogrusObj.Error("order-timeout consumer deliveries channel closed")
+				return
+			}
+			processOrderTimeoutMessage(ctx, delivery)
+		}
+	}
+}
+
+// processOrderTimeoutMessage 处理订单超时消息
+func processOrderTimeoutMessage(_ context.Context, delivery amqp.Delivery) {
+	consumeCtx := extractConsumerContext(delivery.Headers, "rabbitmq.consume."+consts.OrderTimeoutQueue)
+
+	var event types.OrderTimeoutEvent
+	if err := json.Unmarshal(delivery.Body, &event); err != nil {
+		log.LogrusObj.Errorf("order-timeout deserialize failed: %v", err)
+		_ = delivery.Nack(false, false)
+		return
+	}
+
+	// DeleteUnpaidOrderByOrderNum 自带 WHERE type = 1 条件
+	// 已支付的订单不会被删除，已删除的订单影响 0 行，均不会报错
+	if err := dao.NewOrderDao(consumeCtx).DeleteUnpaidOrderByOrderNum(event.OrderNum); err != nil {
+		log.LogrusObj.Errorf("order-timeout close order failed: %v", err)
+		_ = delivery.Nack(false, true)
+		return
+	}
+
+	if err := delivery.Ack(false); err != nil {
+		log.LogrusObj.Errorf("order-timeout ack failed: %v", err)
 	}
 }
 

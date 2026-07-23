@@ -13,7 +13,6 @@ import (
 	"e-mall/repository/kafka"
 	"e-mall/repository/rabbitmq"
 	"e-mall/routes"
-	"e-mall/service"
 	"e-mall/utils/idgen"
 	log "e-mall/utils/log"
 	"e-mall/utils/track"
@@ -43,9 +42,4 @@ func loading() {
 
 	log.InitLogger()
 	fmt.Println("加载配置完成...")
-	go startScript()
-}
-
-func startScript() {
-	service.StartOrderTimeoutWorker(context.Background())
 }

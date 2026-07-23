@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"sync"
+	"time"
 
 	"github.com/opentracing/opentracing-go/ext"
 	amqp "github.com/rabbitmq/amqp091-go"
@@ -98,6 +99,73 @@ func PublishJSON(ctx context.Context, queue string, payload interface{}) error {
 	}
 
 	err = channel.Publish("", queue, false, false, amqp.Publishing{
+		ContentType:  "application/json",
+		DeliveryMode: amqp.Persistent,
+		Headers:      headers,
+		Body:         body,
+	})
+	if err != nil {
+		ext.Error.Set(span, true)
+		span.SetTag("error.message", err.Error())
+	}
+	return err
+}
+
+// PublishDelayedJSON 通过 x-delayed-message exchange 发布延迟消息
+// delay 投递延迟时长（消息将在 delay 时间后被投递到绑定的队列）
+func PublishDelayedJSON(ctx context.Context, exchange, routingKey string, delay time.Duration, payload interface{}) error {
+	if channel == nil {
+		InitRabbitMQ()
+	}
+	if channel == nil {
+		return fmt.Errorf("rabbitmq unavailable")
+	}
+
+	span, _ := trackutil.WithSpan(ctx, fmt.Sprintf("rabbitmq.publish.delayed.%s", routingKey))
+	defer span.Finish()
+
+	body, err := json.Marshal(payload)
+	if err != nil {
+		ext.Error.Set(span, true)
+		span.SetTag("error.message", err.Error())
+		return err
+	}
+
+	headers := amqp.Table{}
+	carrier, err := trackutil.GetTextMapCarrier(span)
+	if err == nil {
+		for key, value := range carrier {
+			headers[key] = value
+		}
+	}
+	// 设置延迟时间（毫秒），由 x-delayed-message exchange 解析
+	headers["x-delay"] = delay.Milliseconds()
+
+	mu.Lock()
+	defer mu.Unlock()
+
+	// 声明 x-delayed-message 类型 exchange
+	args := amqp.Table{"x-delayed-type": "direct"}
+	if err = channel.ExchangeDeclare(exchange, "x-delayed-message", true, false, false, false, args); err != nil {
+		ext.Error.Set(span, true)
+		span.SetTag("error.message", err.Error())
+		return err
+	}
+
+	// 声明队列并绑定到 exchange
+	_, err = channel.QueueDeclare(routingKey, true, false, false, false, nil)
+	if err != nil {
+		ext.Error.Set(span, true)
+		span.SetTag("error.message", err.Error())
+		return err
+	}
+	if err = channel.QueueBind(routingKey, routingKey, exchange, false, nil); err != nil {
+		ext.Error.Set(span, true)
+		span.SetTag("error.message", err.Error())
+		return err
+	}
+
+	err = channel.Publish(exchange, routingKey, false, false, amqp.Publishing{
 		ContentType:  "application/json",
 		DeliveryMode: amqp.Persistent,
 		Headers:      headers,

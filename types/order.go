@@ -1,5 +1,7 @@
 package types
 
+import "time"
+
 type OrderServiceReq struct {
 	OrderId   uint `form:"order_id" json:"order_id"`
 	ProductID uint `form:"product_id" json:"product_id"`
@@ -77,6 +79,12 @@ type OrderRefundResp struct {
 	RefundAmount float64 `json:"refund_amount"`
 	RefundStatus int     `json:"refund_status"`
 	Type         uint    `json:"type"`
+}
+
+// OrderTimeoutEvent 订单超时事件（通过 RabbitMQ 延迟队列投递）
+type OrderTimeoutEvent struct {
+	OrderNum  uint64    `json:"order_num"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type OrderListResp struct {
