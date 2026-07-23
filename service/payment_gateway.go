@@ -23,6 +23,7 @@ import (
 	"e-mall/repository/rabbitmq"
 	"e-mall/types"
 	"e-mall/utils/ctl"
+	"e-mall/utils/idgen"
 	"e-mall/utils/log"
 )
 
@@ -41,7 +42,7 @@ func GetPayGatewaySrv() *PayGatewaySrv {
 
 func pendingCreditKey(userID uint) string { return fmt.Sprintf("%s%d", pendingCreditPrefix, userID) }
 
-func genRechargeOrderNum() string { return fmt.Sprintf("R%d", time.Now().UnixNano()) }
+func genRechargeOrderNum() string { return fmt.Sprintf("R%d", idgen.NextID()) }
 
 func genRefundNo(orderNum string) string {
 	return fmt.Sprintf("RF%s%d", orderNum, time.Now().UnixNano())

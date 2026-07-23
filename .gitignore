@@ -2,3 +2,4 @@ config/locales/config.yaml
 cmd/logs
 # 项目排除路径
 /web-admin/vite.config.js
+/temp.md

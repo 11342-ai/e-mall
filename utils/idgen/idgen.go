@@ -1,11 +1,10 @@
 package idgen
 
 import (
+	conf "e-mall/config"
 	"time"
 
 	"github.com/bwmarrin/snowflake"
-
-	conf "e-mall/config"
 )
 
 var node *snowflake.Node
