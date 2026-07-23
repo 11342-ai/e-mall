@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/e"
+	"e-mall/repository/db/dao"
+	"e-mall/utils/ctl"
+	"e-mall/utils/e"
 )
 
 // AdminAuthMiddleware 管理员鉴权，须在 AuthMiddleware 之后挂载

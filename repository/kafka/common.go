@@ -15,12 +15,12 @@ import (
 	segmentio "github.com/segmentio/kafka-go"
 	"gorm.io/gorm"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	log "github.com/YasinDoyle/e-mall/utils/log"
-	trackutil "github.com/YasinDoyle/e-mall/utils/track"
+	conf "e-mall/config"
+	"e-mall/consts"
+	"e-mall/repository/db/dao"
+	"e-mall/repository/db/model"
+	log "e-mall/utils/log"
+	trackutil "e-mall/utils/track"
 )
 
 var (

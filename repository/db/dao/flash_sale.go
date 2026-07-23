@@ -5,8 +5,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
+	"e-mall/consts"
+	"e-mall/repository/db/model"
 )
 
 type FlashSaleDao struct {

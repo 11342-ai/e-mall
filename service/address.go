@@ -4,11 +4,11 @@ import (
 	"context"
 	"sync"
 
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	util "github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/repository/db/dao"
+	"e-mall/repository/db/model"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	util "e-mall/utils/log"
 )
 
 var AddressSrvIns *AddressSrv

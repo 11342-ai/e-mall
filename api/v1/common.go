@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/e"
+	conf "e-mall/config"
+	"e-mall/utils/ctl"
+	"e-mall/utils/e"
 )
 
 func ErrorResponse(ctx *gin.Context, err error) *ctl.Response {

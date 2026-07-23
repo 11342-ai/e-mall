@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/YasinDoyle/e-mall/repository/db/model"
+	"e-mall/repository/db/model"
 )
 
 type RechargeDao struct {

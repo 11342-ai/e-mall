@@ -1,13 +1,14 @@
 package model
 
 import (
-	"github.com/YasinDoyle/e-mall/utils/secret"
+	"e-mall/utils/secret"
+
 	"github.com/spf13/cast"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/consts"
+	conf "e-mall/config"
+	"e-mall/consts"
 )
 
 type User struct {

@@ -6,7 +6,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/YasinDoyle/e-mall/consts"
+	"e-mall/consts"
 )
 
 var jwtSecret = []byte("YasinDoyle")

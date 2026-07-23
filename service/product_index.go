@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	esrepo "github.com/YasinDoyle/e-mall/repository/es"
-	"github.com/YasinDoyle/e-mall/types"
+	"e-mall/repository/db/model"
+	esrepo "e-mall/repository/es"
+	"e-mall/types"
 )
 
 var ProductIndexSrvIns *ProductIndexSrv

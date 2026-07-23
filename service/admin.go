@@ -8,12 +8,12 @@ import (
 	"sync"
 	"time"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/log"
-	util "github.com/YasinDoyle/e-mall/utils/upload"
+	conf "e-mall/config"
+	"e-mall/consts"
+	"e-mall/repository/db/dao"
+	"e-mall/types"
+	"e-mall/utils/log"
+	util "e-mall/utils/upload"
 )
 
 var AdminSrvIns *AdminSrv

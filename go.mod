@@ -1,9 +1,10 @@
-module github.com/YasinDoyle/e-mall
+module e-mall
 
 go 1.26.2
 
 require (
 	github.com/apache/skywalking-go v0.6.0
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/elastic/go-elasticsearch/v8 v8.18.0
 	github.com/gin-contrib/sessions v1.1.0
 	github.com/gin-gonic/gin v1.12.0

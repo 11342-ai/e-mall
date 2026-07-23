@@ -5,9 +5,9 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/e"
+	"e-mall/repository/db/model"
+	"e-mall/types"
+	"e-mall/utils/e"
 )
 
 type CartDao struct {

@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/e"
-	jwt "github.com/YasinDoyle/e-mall/utils/jwt"
+	"e-mall/consts"
+	"e-mall/utils/ctl"
+	"e-mall/utils/e"
+	jwt "e-mall/utils/jwt"
 )
 
 func AuthMiddleware() gin.HandlerFunc {

@@ -8,8 +8,8 @@ import (
 	"os"
 	"strconv"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	util "github.com/YasinDoyle/e-mall/utils/log"
+	conf "e-mall/config"
+	util "e-mall/utils/log"
 )
 
 // ProductUploadToLocalStatic 上传到本地文件中

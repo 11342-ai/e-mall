@@ -13,9 +13,9 @@ import (
 
 	"github.com/elastic/go-elasticsearch/v8/esapi"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
+	conf "e-mall/config"
+	"e-mall/repository/db/model"
+	"e-mall/types"
 )
 
 type ProductIndexRepo struct{}

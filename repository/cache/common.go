@@ -8,8 +8,8 @@ import (
 	"github.com/redis/go-redis/v9"
 	logging "github.com/sirupsen/logrus"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	trackutil "github.com/YasinDoyle/e-mall/utils/track"
+	conf "e-mall/config"
+	trackutil "e-mall/utils/track"
 )
 
 // RedisClient Redis缓存客户端单例

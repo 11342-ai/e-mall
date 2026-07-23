@@ -3,8 +3,9 @@ package dao
 import (
 	"context"
 
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/repository/db/model"
+	"e-mall/utils/log"
+
 	"gorm.io/gorm"
 )
 

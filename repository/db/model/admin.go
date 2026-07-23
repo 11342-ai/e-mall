@@ -4,8 +4,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/consts"
+	conf "e-mall/config"
+	"e-mall/consts"
 )
 
 type Admin struct {

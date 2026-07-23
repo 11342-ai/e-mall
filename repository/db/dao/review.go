@@ -5,7 +5,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/YasinDoyle/e-mall/repository/db/model"
+	"e-mall/repository/db/model"
 )
 
 type ReviewDao struct {

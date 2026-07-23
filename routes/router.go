@@ -7,8 +7,8 @@ import (
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 
-	api "github.com/YasinDoyle/e-mall/api/v1"
-	"github.com/YasinDoyle/e-mall/middleware"
+	api "e-mall/api/v1"
+	"e-mall/middleware"
 )
 
 func NewRouter() *gin.Engine {

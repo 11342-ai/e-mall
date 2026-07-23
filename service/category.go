@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/types"
-	util "github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/repository/db/dao"
+	"e-mall/types"
+	util "e-mall/utils/log"
 )
 
 var CategorySrvIns *CategorySrv

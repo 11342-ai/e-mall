@@ -4,18 +4,19 @@ import (
 	"context"
 	"fmt"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/repository/cache"
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
+	conf "e-mall/config"
+	"e-mall/repository/cache"
+	"e-mall/repository/db/dao"
 
-	// "github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/repository/es"
-	"github.com/YasinDoyle/e-mall/repository/kafka"
-	"github.com/YasinDoyle/e-mall/repository/rabbitmq"
-	"github.com/YasinDoyle/e-mall/routes"
-	"github.com/YasinDoyle/e-mall/service"
-	log "github.com/YasinDoyle/e-mall/utils/log"
-	"github.com/YasinDoyle/e-mall/utils/track"
+	// "e-mall/repository/db/dao"
+	"e-mall/repository/es"
+	"e-mall/repository/kafka"
+	"e-mall/repository/rabbitmq"
+	"e-mall/routes"
+	"e-mall/service"
+	"e-mall/utils/idgen"
+	log "e-mall/utils/log"
+	"e-mall/utils/track"
 
 	_ "github.com/apache/skywalking-go"
 )
@@ -35,6 +36,7 @@ func loading() {
 	es.InitES()
 	kafka.InitKafka()
 	track.InitTrack()
+	idgen.Init()
 
 	log.InitLogger()
 	fmt.Println("加载配置完成...")

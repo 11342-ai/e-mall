@@ -15,8 +15,8 @@ import (
 	"gorm.io/gorm/schema"
 	"gorm.io/plugin/dbresolver"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	trackutil "github.com/YasinDoyle/e-mall/utils/track"
+	conf "e-mall/config"
+	trackutil "e-mall/utils/track"
 )
 
 var (

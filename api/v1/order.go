@@ -3,14 +3,14 @@ package v1
 import (
 	"net/http"
 
-	"github.com/YasinDoyle/e-mall/consts"
+	"e-mall/consts"
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/YasinDoyle/e-mall/service"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/service"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	"e-mall/utils/log"
 )
 
 func CreateOrderHandler() gin.HandlerFunc {

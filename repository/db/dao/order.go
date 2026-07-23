@@ -7,9 +7,9 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
+	"e-mall/consts"
+	"e-mall/repository/db/model"
+	"e-mall/types"
 )
 
 type OrderDao struct {

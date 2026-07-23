@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"math/rand"
 	"strconv"
 	"sync"
 	"time"
@@ -12,14 +11,15 @@ import (
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/repository/cache"
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	util "github.com/YasinDoyle/e-mall/utils/log"
+	conf "e-mall/config"
+	"e-mall/consts"
+	"e-mall/repository/cache"
+	"e-mall/repository/db/dao"
+	"e-mall/repository/db/model"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	"e-mall/utils/idgen"
+	util "e-mall/utils/log"
 )
 
 const OrderTimeKey = "OrderTime"
@@ -53,11 +53,7 @@ func (s *OrderSrv) OrderCreate(ctx context.Context, req *types.OrderCreateReq) (
 		return
 	}
 
-	number := fmt.Sprintf("%09v", rand.New(rand.NewSource(time.Now().UnixNano())).Int31n(1000000000))
-	productNum := strconv.Itoa(int(req.ProductID))
-	userNum := strconv.Itoa(int(u.Id))
-	number = number + productNum + userNum
-	orderNum, _ := strconv.ParseUint(number, 10, 64)
+	orderNum := idgen.NextID()
 
 	orderDao := dao.NewOrderDao(ctx)
 	var order *model.Order

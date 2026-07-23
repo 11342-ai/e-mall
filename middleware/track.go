@@ -3,8 +3,8 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/utils/track"
+	"e-mall/consts"
+	"e-mall/utils/track"
 )
 
 func Jaeger() gin.HandlerFunc {

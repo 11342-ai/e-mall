@@ -1,9 +1,9 @@
 package dao
 
 import (
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/utils/log"
+	conf "e-mall/config"
+	"e-mall/repository/db/model"
+	"e-mall/utils/log"
 )
 
 func migrate() (err error) {

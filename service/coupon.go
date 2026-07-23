@@ -6,11 +6,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/repository/db/dao"
+	"e-mall/repository/db/model"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	"e-mall/utils/log"
 )
 
 var CouponSrvIns *CouponSrv

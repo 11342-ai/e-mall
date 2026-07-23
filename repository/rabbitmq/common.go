@@ -9,9 +9,9 @@ import (
 	"github.com/opentracing/opentracing-go/ext"
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	log "github.com/YasinDoyle/e-mall/utils/log"
-	trackutil "github.com/YasinDoyle/e-mall/utils/track"
+	conf "e-mall/config"
+	log "e-mall/utils/log"
+	trackutil "e-mall/utils/track"
 )
 
 var (

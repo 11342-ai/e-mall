@@ -5,13 +5,13 @@ import (
 	"errors"
 	"sync"
 
-	conf "github.com/YasinDoyle/e-mall/config"
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/e"
-	util "github.com/YasinDoyle/e-mall/utils/log"
+	conf "e-mall/config"
+	"e-mall/consts"
+	"e-mall/repository/db/dao"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	"e-mall/utils/e"
+	util "e-mall/utils/log"
 )
 
 var CartSrvIns *CartSrv

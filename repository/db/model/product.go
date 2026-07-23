@@ -5,7 +5,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/YasinDoyle/e-mall/repository/cache"
+	"e-mall/repository/cache"
 )
 
 // 商品模型

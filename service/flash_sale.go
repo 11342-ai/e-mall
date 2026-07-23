@@ -10,13 +10,13 @@ import (
 
 	"github.com/redis/go-redis/v9"
 
-	"github.com/YasinDoyle/e-mall/repository/cache"
-	"github.com/YasinDoyle/e-mall/repository/db/dao"
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/repository/kafka"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/repository/cache"
+	"e-mall/repository/db/dao"
+	"e-mall/repository/db/model"
+	"e-mall/repository/kafka"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	"e-mall/utils/log"
 )
 
 const flashSaleReserveScript = `

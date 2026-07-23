@@ -24,6 +24,7 @@ type Conf struct {
 	PhotoPath     *LocalPhotoPath         `yaml:"photoPath"`
 	WechatPay     *WechatPayConf          `yaml:"wechatPay"`
 	Alipay        *AlipayConf             `yaml:"alipay"`
+	Snowflake     *SnowflakeConf          `yaml:"snowflake"`
 }
 
 type WechatPayConf struct {
@@ -135,6 +136,11 @@ type Cache struct {
 	CacheExpires int64  `yaml:"cacheExpires"`
 	CacheWarmUp  bool   `yaml:"cacheWarmUp"`
 	CacheServer  string `yaml:"cacheServer"`
+}
+
+type SnowflakeConf struct {
+	WorkerID  int64  `yaml:"workerId"`
+	StartTime string `yaml:"startTime"`
 }
 
 type Es struct {

@@ -6,11 +6,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/service"
-	"github.com/YasinDoyle/e-mall/types"
-	"github.com/YasinDoyle/e-mall/utils/ctl"
-	"github.com/YasinDoyle/e-mall/utils/log"
+	"e-mall/consts"
+	"e-mall/service"
+	"e-mall/types"
+	"e-mall/utils/ctl"
+	"e-mall/utils/log"
 )
 
 // CreateProductHandler 创建商品

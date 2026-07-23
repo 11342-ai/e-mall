@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/YasinDoyle/e-mall/consts"
-	"github.com/YasinDoyle/e-mall/utils/e"
-	"github.com/YasinDoyle/e-mall/utils/track"
+	"e-mall/consts"
+	"e-mall/utils/e"
+	"e-mall/utils/track"
 )
 
 type Response struct {

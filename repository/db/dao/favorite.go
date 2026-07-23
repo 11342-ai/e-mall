@@ -5,8 +5,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/YasinDoyle/e-mall/repository/db/model"
-	"github.com/YasinDoyle/e-mall/types"
+	"e-mall/repository/db/model"
+	"e-mall/types"
 )
 
 type FavoritesDao struct {
