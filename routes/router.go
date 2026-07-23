@@ -2,6 +2,7 @@ package routes
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
@@ -84,7 +85,10 @@ func NewRouter() *gin.Engine {
 			authed.POST("favorites/delete", api.DeleteFavoriteHandler())
 
 			// 订单操作
-			authed.POST("orders/create", api.CreateOrderHandler())
+			authed.POST("orders/create",
+				middleware.GlobalRateLimiterWithBurst(50, 100, 200*time.Millisecond),
+				api.CreateOrderHandler(),
+			)
 			authed.GET("orders/list", api.ListOrdersHandler())
 			authed.GET("orders/show", api.ShowOrderHandler())
 			authed.POST("orders/delete", api.DeleteOrderHandler())
@@ -117,7 +121,12 @@ func NewRouter() *gin.Engine {
 			authed.POST("flash_sale/init", api.InitFlashSaleHandler())
 			authed.GET("flash_sale/list", api.ListFlashSaleHandler())
 			authed.GET("flash_sale/show", api.GetFlashSaleHandler())
-			authed.POST("flash_sale/skill", api.FlashSaleHandler())
+			authed.POST("flash_sale/skill",
+				middleware.GlobalRateLimiter(100, 200),
+				middleware.UserRateLimiter(time.Second, 3),
+				middleware.IPRateLimiter(time.Second, 10),
+				api.FlashSaleHandler(),
+			)
 
 			// 充值（需登录）
 			authed.POST("recharge/wechat", api.WechatRechargeHandler())

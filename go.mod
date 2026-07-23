@@ -11,6 +11,7 @@ require (
 	github.com/go-pay/gopay v1.5.122
 	github.com/go-playground/validator/v10 v10.30.2
 	github.com/golang-jwt/jwt/v4 v4.5.2
+	github.com/juju/ratelimit v1.0.2
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/qiniu/go-sdk/v7 v7.26.10
 	github.com/rabbitmq/amqp091-go v1.10.0

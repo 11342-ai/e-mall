@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="999584a6-42a7-41a2-91f5-673702164fa2" name="更改" comment="添加一个支付流水表，解决以往那个rabbitmq没有消费者的问题">
+      <change afterPath="$PROJECT_DIR$/middleware/ratelimit.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consts/product.go" beforeDir="false" afterPath="$PROJECT_DIR$/consts/product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/kafka/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository/kafka/common.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/e/code.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/e/code.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/e/msg.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/e/msg.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

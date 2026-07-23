@@ -45,6 +45,9 @@ const (
 	//数据库错误
 	ErrorDatabase = 40001
 
+	// 限流相关
+	ErrorTooManyRequests = 40002
+
 	//对象存储错误
 	ErrorOss        = 50001
 	ErrorUploadFile = 50002

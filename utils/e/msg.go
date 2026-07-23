@@ -41,7 +41,8 @@ var MsgFlags = map[int]string{
 	ErrorUploadFile:    "上传失败",
 	ErrorAdminFindUser: "管理员查询用户失败",
 
-	ErrorDatabase: "数据库操作出错,请重试",
+	ErrorDatabase:        "数据库操作出错,请重试",
+	ErrorTooManyRequests: "请求频率过高，请稍后再试",
 
 	ErrorOss: "OSS配置错误",
 }
